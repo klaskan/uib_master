@@ -1,0 +1,50 @@
+<!-- arver template fra taskmate/templates/base.html-->
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    <title>Waiting..</title>
+{% endblock title %}
+
+
+{% block content %}
+
+
+    <div class="row mt-5">
+    <div class="col-3">
+    </div>
+    
+    <div class="col-6">
+        <h2>Venter på andre spillere...</h2>
+        <img src="https://media.giphy.com/media/QBd2kLB5qDmysEXre9/giphy.gif" alt="waiting.gif">
+    </div> 
+    </div>
+    <div class="col-3">
+    </div>
+    </div>
+    <!-- Her kalkulerer man om man blir revidert eller ikke. -->
+        
+
+
+
+
+    <!--  https://media.giphy.com/media/QBd2kLB5qDmysEXre9/giphy.gif -->
+
+
+    <script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
+
+<script>
+$("h2").css('color', 'red'); 
+
+var timer = setTimeout(function() {
+    window.location='http://example.com'
+}, 10000);
+
+
+</script>
+    
+{% endblock content %}
+

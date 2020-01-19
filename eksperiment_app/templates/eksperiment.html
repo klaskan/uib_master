@@ -1,0 +1,133 @@
+<!-- arver template fra taskmate/templates/base.html-->
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+    <title>Eksperiment</title>
+{% endblock title %}
+
+
+{% block content %}
+
+<!-- Se om variabelen blir akseptert-->
+    {% comment %} <script type="text/javascript">
+        function validation() {
+            var x, text;
+            // Get the value of the input field with id="numinput"
+            x = document.getElementById("numinput").value;
+            
+            // If x is Not a Number or less than one or greater than 10
+            if (isNaN(x) || x <= 0 || x > {{ rand_penger }}) {
+            text = "Input not valid";
+            } else {
+            text = "Input OK"; // En input som snder til server.
+            document.getElementById("myForm").submit();
+            }
+            document.getElementById("demo").innerHTML = text;
+        }
+
+    </script> {% endcomment %}
+
+
+<!--_______________________info og form_________________-->
+
+    <div class="row mt-5">
+    <div class="col">
+      <p>Du får utbetalt <b>{{ utbetalt }}$</b>, og sansynligheten for å bli revidert/tatt er <b>{{ sansynlighet1 }}%</b><br/>
+        Skriv under hvor mye av denne inntekten du ønsker å deklarere.</p>
+        
+        <!-- Alternativ form-->
+        <form method="POST">
+            {% csrf_token %}
+            <div class="row">
+            <div class="col-1">
+            </div>
+            {{ form.as_p }}
+            <input class="btn btn-primary" type="submit" value="Submit"/>
+            </div>
+            <small class="text-muted"> &#9432 Venligst skriv et tall mellom 0 og {{ rand_penger }}, og bruk "." ikke ","</small>
+        </form>
+
+    </div>
+    
+    <div class="col">
+
+      <main role="main" class="container">
+  <div class="row">
+    <div>
+    </div>
+    <div class="">
+      <div class="content-section">
+        <h3>Statistikk</h3>
+          <ul class="list-group">
+            <li class="list-group-item">User: {{ rand_penger }}</li>
+            <li class="list-group-item">Du har tjent: {{ count }}</li>
+            <li class="list-group-item list-group-item-light">Opptjening gjennom skatter: </li>
+            <li class="list-group-item list-group-item-light">Sum: </li>
+          </ul>
+        </p>
+      </div>
+    </div>
+  </div>
+</main>
+
+    </div>
+  </div>
+
+
+
+    {% comment %} <div class="mt-5">
+    </div>
+   <div class="col-pt-5" >
+    
+        <p>Du får utbetalt <b>{{ rand_penger }}$</b>, og sansynligheten for å bli revidert/tatt er <b>{{ sansynlighet1 }}%</b><br />
+        Skriv under hvor mye av denne inntekten du ønsker å deklarere.</p>
+        
+        <!-- Alternativ form-->
+        <form method="POST">
+            {% csrf_token %}
+            <div class="row">
+            {{ form.as_p }}
+            <input class="btn btn-primary " type="submit" value="Submit"/>
+            </div>
+            <small class="text-muted"> &#9432 Venligst skriv et tall mellom 0 og {{ rand_penger }}, og bruk "." ikke ","</small>
+        </form> {% endcomment %}
+
+{% comment %} 
+        <form id="myForm" method="POST"> <!-- Her må vi bruke post og en csrf token (for sikkerhet), uten csrf vil django nekte å send data. -->
+            {% csrf_token %}
+            <div class="row">
+            <input id="numinput" type="text" class="form-control col-lg-4" name="deklarert_inntekt" placeholder="Mengden av lønnen her">
+            <button class="btn btn-primary" onclick="validation()">Submit</button>
+            </div>
+            <small class="text-muted"> &#9432 Venligst skriv et tall mellom 0 og {{ rand_penger }}, og bruk "." ikke ","</small>
+            <p id="demo"></p> 
+        </form>  
+    </div>  {% endcomment %}
+
+<!--_________________Sidebar_________________-->    
+
+
+{% comment %} <main role="main" class="container">
+  <div class="row">
+    <div>
+    </div>
+    <div class="col-md-5">
+      <div class="content-section">
+        <h3>Statistikk</h3>
+          <ul class="list-group">
+            <li class="list-group-item">User: {{ rand_penger }}</li>
+            <li class="list-group-item">Du har tjent: {{ count }}</li>
+            <li class="list-group-item list-group-item-light">Opptjening gjennom skatter: </li>
+            <li class="list-group-item list-group-item-light">Sum: </li>
+          </ul>
+        </p>
+      </div>
+    </div>
+  </div>
+</main> {% endcomment %}
+
+
+
+
+{% endblock content %}
+
